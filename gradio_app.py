@@ -143,7 +143,6 @@ def _gen_shape(
     stats['time'] = time_meta
     return mesh, image, save_folder
 
-
 def generation_all(
     caption,
     image,
@@ -376,9 +375,11 @@ if __name__ == '__main__':
 
     HAS_T2I = False
     if args.enable_t23d:
-        from hy3dgen.text2image import HunyuanDiTPipeline
+        # from hy3dgen.text2image import HunyuanDiTPipeline
+        from DiffusionPipeline.Text2Image import Diffusion
 
-        t2i_worker = HunyuanDiTPipeline('Tencent-Hunyuan/HunyuanDiT-v1.1-Diffusers-Distilled')
+        # t2i_worker = HunyuanDiTPipeline('Tencent-Hunyuan/HunyuanDiT-v1.1-Diffusers-Distilled')
+        t2i_worker = Diffusion(model_name="CompVis/stable-diffusion-v1-4")
         HAS_T2I = True
 
     from hy3dgen.shapegen import FaceReducer, FloaterRemover, DegenerateFaceRemover, \
